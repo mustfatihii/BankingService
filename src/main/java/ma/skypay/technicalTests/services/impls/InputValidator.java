@@ -2,6 +2,8 @@ package ma.skypay.technicalTests.services.impls;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 public class InputValidator {
     public static void isAmountValid(int amount){
@@ -10,11 +12,11 @@ public class InputValidator {
         }
     }
 
-    public static LocalDate isDateValide(String dateStr){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    public static LocalDate isDateValid(String dateStr){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy").withResolverStyle(ResolverStyle.STRICT);
         try {
             return LocalDate.parse(dateStr, formatter);
-        }catch (Exception e){
+        }catch (DateTimeParseException e){
             throw new IllegalArgumentException(dateStr +" Is Not A Valid Date");
         }
     }

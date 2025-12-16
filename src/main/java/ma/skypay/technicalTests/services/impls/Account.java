@@ -17,7 +17,7 @@ public class Account implements AccountService {
     public void deposit(int amount){
         InputValidator.isAmountValid(amount);
         String dateStr = promptForDate(Opertaion.DEPOSIT.toString(), amount);
-        LocalDate date = InputValidator.isDateValide(dateStr);
+        LocalDate date = InputValidator.isDateValid(dateStr);
 
         int newBalance = balance + amount;
 
@@ -32,7 +32,7 @@ public class Account implements AccountService {
     public void withdraw(int amount) {
         InputValidator.isAmountValid(amount);
         String dateStr = promptForDate(Opertaion.WITHDRAW.toString(), amount);
-        LocalDate date = InputValidator.isDateValide(dateStr);
+        LocalDate date = InputValidator.isDateValid(dateStr);
 
         if(balance>=amount){
             int newBalance = balance-amount;
